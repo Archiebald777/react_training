@@ -1,11 +1,13 @@
 import { Component } from "react";
 import { myPicturesCollection } from "../../App";
+import InputCarousel from "../InputCarousel";
 import styles from "./Carousel.module.scss";
+import PropTypes from 'prop-types'
 
 class Carousel extends Component {
   constructor(props) {
     super(props);
-    this.state = { currentIndex: 0 };
+    this.state = { currentIndex: 0, interval: 1000 };
     this.intervalId = null;
   }
 
@@ -21,8 +23,17 @@ class Carousel extends Component {
 slideShow = () => {
  this.intervalId =  setInterval(() => {
     this.clickHandler()
-  }, 2000)
+  }, this.state.interval)
 }
+
+intervalTimer = (newInterval) => {
+  this.setState({
+    interval: newInterval
+  })
+}
+
+
+
 
 
 stopSlideShow = () => {
@@ -40,6 +51,7 @@ stopSlideShow = () => {
             </button>
             <button className={styles.button} onClick={this.slideShow}> Start Slideshow </button>
             <button className={styles.button} onClick={this.stopSlideShow}> Stop Slideshow </button>
+            <InputCarousel  intervalTimer = {this.intervalTimer} />
             <img
               className={styles.img}
               src={myPicturesCollection[currentIndex].imgPath}
@@ -50,6 +62,14 @@ stopSlideShow = () => {
       </div>
     );
   }
+  
 }
+
+
+Carousel.propTypes = {
+  className:  PropTypes.func,
+  
+}
+
 
 export default Carousel;
