@@ -1,40 +1,34 @@
 import React from "react";
-import Carousel from "./components/Carousel";
-import InputCarousel from "./components/InputCarousel";
-function App() {
-  return (
-    <div className="App">
-      <Carousel />
-    </div>
-  );
+import { Component } from "react";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import Login from "./components/Login";
+import HomePage from "./components/HomePage";
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: "",
+    };
+  }
+  handler = (myValue) => {
+    this.setState({
+      inputValue: myValue,
+    });
+  };
+  render() {
+    return (
+      <BrowserRouter>
+        <div>
+          <Route exact path="/login">
+            <Login myValue={(e) => this.handler(e.target.value)} />
+          </Route>
+          <Route path="/Home">
+            <HomePage />
+          </Route>
+        </div>
+      </BrowserRouter>
+    );
+  }
 }
-
 export default App;
-
-export const myPicturesCollection = [
-  {
-    lagel: "First Picture",
-    imgPath:
-      "https://hubblesite.org/files/live/sites/hubble/files/home/hubble-30th-anniversary/images/_images/hubble_30th_images/hubble-30th-saturn.jpg?t=tn2400",
-  },
-  {
-    label: "Second Picture",
-    imgPath:
-      "https://hubblesite.org/files/live/sites/hubble/files/home/hubble-30th-anniversary/images/_images/hubble_30th_images/hubble-30th-eta-carinae.jpg?t=tn2400",
-  },
-  {
-    label: "Third Picture",
-    imgPath:
-      "https://hubblesite.org/files/live/sites/hubble/files/home/hubble-30th-anniversary/images/_images/hubble_30th_images/hubble-30th-veil-nebula.jpg?t=tn2400",
-  },
-  {
-    label: "Fourth Picture",
-    imgPath:
-      "https://hubblesite.org/files/live/sites/hubble/files/home/hubble-30th-anniversary/images/_images/hubble_30th_images/hubble-30th-cats-eye.jpg?t=tn2400",
-  },
-  {
-    label: "Fifth Picture",
-    imgPath:
-      "https://hubblesite.org/files/live/sites/hubble/files/home/hubble-30th-anniversary/images/_images/hubble_30th_images/hubble-30th-monkey-head.jpg?t=tn2400",
-  },
-];
