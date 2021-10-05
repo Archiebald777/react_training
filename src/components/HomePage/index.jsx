@@ -1,11 +1,18 @@
-import { Component } from "react";
 import Login from "../Login";
+import { useState } from "react";
 
-class HomePage extends Component {
-  render() {
-    const { myValue } = this.props
-    return <div>Привет {myValue}</div>
-  }
+function HomePage(props){
+  const [name, setNewName] = useState(null);
+  const nameHandler = () => {
+    setName(name + newName);
+  };
+return(
+  <div>
+    <p>Привет, {nameHandler} </p>
+  </div>
+)
 }
+
+
 
 export default HomePage;
