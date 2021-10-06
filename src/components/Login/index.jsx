@@ -1,30 +1,31 @@
 import { useState } from "react";
 import styles from "./Login.module.scss";
-
+import { Link } from "react-router-dom";
 function Login(props) {
-const [newName, setName] = useState(null);
-const changeName = ({target: {value}}) => {
-  setName(value)
-}
+  const [inputValue, setInputValue] = useState('');
+  const valueSetter = (e) => {
+    setInputValue(e.target.value)
+  }
+  const changeName = () => {
+    const {nameCreator} = props;
+    nameCreator(inputValue);
+  }
   return (
     <div className={styles.loginBox}>
       <h2>Login</h2>
       <form>
         <div className={styles.userBox}>
-          <input onChange={changeName} value={newName} type="text" name required />
-          <label>Username</label>
+          <input onChange={valueSetter} value = {inputValue} type="text"  />
+          <label>Enter your Name</label>
         </div>
-        <div className={styles.userBox}>
-          <input type="password" name required />
-          <label>Password</label>
-        </div>
-        <a href="/Home">
+      
+        <Link onClick={changeName} to="/Home">
           <span />
           <span />
           <span />
           <span />
           Submit
-        </a>
+        </Link>
       </form>
     </div>
   );

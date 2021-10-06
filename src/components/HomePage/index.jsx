@@ -1,14 +1,8 @@
-import Login from "../Login";
-import { useState } from "react";
-
 function HomePage(props){
-  const [name, setNewName] = useState(null);
-  const nameHandler = () => {
-    setName(name + newName);
-  };
+  const {name} = props;
 return(
   <div>
-    <p>Привет, {nameHandler} </p>
+    <p>Привет, {name} </p>
   </div>
 )
 }

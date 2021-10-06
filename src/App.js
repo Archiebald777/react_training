@@ -1,20 +1,22 @@
 import React from "react";
-import { Component } from "react";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter,Route} from "react-router-dom";
 import Login from "./components/Login";
 import HomePage from "./components/HomePage";
-
+import { useState } from "react";
 
 function App(){
-  
+  const [name, setName] = useState('');
+  const nameSetter = (newName) => {
+    setName(newName)
+  }
 return (
   <BrowserRouter>
     <div>
       <Route exact path="/login">
-        <Login  />
+        <Login nameCreator = {nameSetter} />
       </Route>
       <Route path="/Home">
-        <HomePage />
+        <HomePage name = {name} />
       </Route>
     </div>
   </BrowserRouter>
